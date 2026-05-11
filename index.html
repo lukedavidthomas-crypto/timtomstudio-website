@@ -18,16 +18,29 @@
     }
 
     h2 {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     p {
       color: #6b7280;
+      line-height: 1.5;
+    }
+
+    .hero {
+      padding: 80px 20px 40px;
+      text-align: center;
     }
 
     .section {
-      padding: 60px 20px;
+      padding: 40px 20px;
       text-align: center;
+    }
+
+    .grid {
+      max-width: 800px;
+      margin: auto;
+      display: grid;
+      gap: 20px;
     }
 
     .card {
@@ -41,24 +54,6 @@
     .card:hover {
       transform: translateY(-4px);
       box-shadow: 0 18px 40px rgba(255, 77, 109, 0.12);
-    }
-
-    .grid {
-      max-width: 800px;
-      margin: auto;
-      display: grid;
-      gap: 20px;
-    }
-
-    .hero {
-      padding: 100px 20px;
-      text-align: center;
-    }
-
-    .hero p {
-      max-width: 600px;
-      margin: auto;
-      font-size: 18px;
     }
 
     .button {
@@ -90,6 +85,20 @@
       text-decoration: none;
       font-weight: 500;
     }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 32px;
+      }
+
+      .hero {
+        padding: 60px 20px 30px;
+      }
+
+      .section {
+        padding: 30px 20px;
+      }
+    }
   </style>
 </head>
 
@@ -103,7 +112,7 @@
       We’re a small, family-run studio based in South Wales, building simple apps and websites that help small businesses achieve big results ✨🚀
     </p>
 
-    <p style="margin-top:20px; font-size:16px;">
+    <p style="margin-top:15px; font-size:16px;">
       No jargon, no over-complication — just practical technology that works, saves time, and helps your business grow.
     </p>
   </div>
@@ -130,7 +139,7 @@
     </div>
   </div>
 
-  <!-- YOUR APP -->
+  <!-- OUR WORK -->
   <div class="section">
     <h2>Our Work</h2>
 
