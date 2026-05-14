@@ -185,9 +185,21 @@
       position: sticky;
       top: 0;
       z-index: 10;
-      background: rgba(255, 255, 255, 0.92);
-      border-bottom: 1px solid rgba(216, 222, 232, 0.8);
+      background: rgba(17, 24, 39, 0.94);
+      border-bottom: 0;
       backdrop-filter: blur(16px);
+      box-shadow: 0 12px 28px rgba(17, 24, 39, 0.12);
+    }
+
+    .site-header::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #b26cff, #35c8ff, #ff45b5, #ffd84d, #5aff9d, #20f2ff);
+      box-shadow: 0 0 16px rgba(53, 200, 255, 0.38);
     }
 
     .nav {
@@ -212,13 +224,14 @@
       width: 178px;
       height: auto;
       display: block;
+      filter: drop-shadow(0 8px 14px rgba(32, 242, 255, 0.16));
     }
 
     .nav-links {
       display: flex;
       align-items: center;
       gap: 22px;
-      color: var(--muted);
+      color: #d9e2ef;
       font-size: 0.95rem;
       font-weight: 650;
     }
@@ -228,7 +241,7 @@
     }
 
     .nav-links a:hover {
-      color: var(--ink);
+      color: #ffffff;
     }
 
     .button {
