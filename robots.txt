@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://timtomstudio.co.uk/sitemap.xml
