@@ -26,7 +26,7 @@
       "email": "hello@timtomstudio.co.uk",
       "telephone": "+447824684820",
       "description": "Affordable website design, custom business email, direct order forms, booking systems and ongoing website support for small businesses in Merthyr Tydfil, Cardiff, Swansea, South Wales and across the UK.",
-      "priceRange": "Website packages from £29.99 per month",
+      "priceRange": "Starter website builds from £299.99 and website packages from £29.99 per month",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Cilsanws Lane",
@@ -58,8 +58,8 @@
         "itemListElement": [
           {
             "@type": "Offer",
-            "name": "Small business website design",
-            "description": "Mobile-friendly website design for small businesses, trades, local services and start-ups."
+            "name": "Starter website build",
+            "description": "Starter website builds from £299.99 for small businesses that need a clear, mobile-friendly web presence."
           },
           {
             "@type": "Offer",
@@ -278,7 +278,10 @@
       width: min(1120px, calc(100% - 36px));
       margin: 0 auto;
       padding: 40px 0 44px;
-      display: block;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(260px, 0.38fr);
+      align-items: center;
+      gap: 44px;
     }
 
     .eyebrow {
@@ -305,21 +308,32 @@
 
     .trust-row {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
-      margin-top: 30px;
+      gap: 13px;
     }
 
     .trust-item {
-      padding: 16px;
+      padding: 18px;
       background: rgba(255, 255, 255, 0.72);
       border: 1px solid rgba(216, 222, 232, 0.82);
       border-radius: 8px;
     }
 
+    .trust-item.featured {
+      background:
+        radial-gradient(circle at 100% 0%, rgba(255, 216, 77, 0.2), transparent 36%),
+        radial-gradient(circle at 0% 100%, rgba(32, 199, 217, 0.15), transparent 34%),
+        rgba(255, 255, 255, 0.9);
+      border-color: rgba(17, 133, 123, 0.3);
+      box-shadow: 0 18px 34px rgba(17, 133, 123, 0.12);
+    }
+
     .trust-item strong {
       display: block;
       margin-bottom: 4px;
+    }
+
+    .trust-item.featured strong {
+      font-size: 1.28rem;
     }
 
     .trust-item span {
@@ -663,6 +677,7 @@
       }
 
       .split,
+      .hero-inner,
       .counta-showcase,
       .contact-grid {
         grid-template-columns: 1fr;
@@ -760,19 +775,20 @@
             <a class="button secondary" href="#services">View services</a>
           </div>
 
-          <div class="trust-row" aria-label="Business summary">
-            <div class="trust-item">
-              <strong>South Wales local</strong>
-              <span>Merthyr Tydfil, Cardiff, Swansea and nearby areas.</span>
-            </div>
-            <div class="trust-item">
-              <strong>From £29.99/month</strong>
-              <span>Basic website packages with custom business email.</span>
-            </div>
-            <div class="trust-item">
-              <strong>Direct support</strong>
-              <span>Plain-English help before and after launch.</span>
-            </div>
+        </div>
+
+        <div class="trust-row" aria-label="Business summary">
+          <div class="trust-item featured">
+            <strong>Starter builds from £299.99</strong>
+            <span>A clear, mobile-friendly website to get your business online.</span>
+          </div>
+          <div class="trust-item featured">
+            <strong>Hosting from £29.99/month</strong>
+            <span>Website hosting plus a custom business email address.</span>
+          </div>
+          <div class="trust-item">
+            <strong>Merthyr Tydfil based</strong>
+            <span>Local support across Merthyr Tydfil, Cardiff, Swansea and South Wales.</span>
           </div>
         </div>
       </div>
