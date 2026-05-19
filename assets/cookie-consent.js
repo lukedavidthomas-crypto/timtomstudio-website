@@ -11,6 +11,14 @@
     }
   }
 
+  function updateAnalyticsConsent(allowed) {
+    if (typeof window.gtag === "function") {
+      window.gtag("consent", "update", {
+        analytics_storage: allowed ? "granted" : "denied"
+      });
+    }
+  }
+
   function writeConsent(consent) {
     const saved = {
       necessary: true,
@@ -27,6 +35,7 @@
     }
 
     window.dispatchEvent(new CustomEvent("timtomCookieConsentChanged", { detail: saved }));
+    updateAnalyticsConsent(saved.analytics);
 
     if (saved.analytics) {
       loadAnalytics();
@@ -41,6 +50,11 @@
     }
 
     window.timtomAnalyticsLoaded = true;
+
+    if (typeof window.gtag === "function") {
+      window.gtag("config", analyticsId, { anonymize_ip: true });
+      return;
+    }
 
     const script = document.createElement("script");
     script.async = true;
@@ -182,8 +196,11 @@
 
     if (!consent) {
       banner.hidden = false;
-    } else if (consent.analytics) {
-      loadAnalytics();
+    } else {
+      updateAnalyticsConsent(consent.analytics);
+      if (consent.analytics) {
+        loadAnalytics();
+      }
     }
   }
 
