@@ -1,6 +1,6 @@
 (function () {
   const storageKey = "timtom_cookie_consent";
-  const analyticsId = window.TIMTOM_GA_ID || "";
+  const analyticsId = window.TIMTOM_GA_ID || "G-7JPQ4XYCN4";
   let memoryConsent = null;
 
   function readConsent() {
