@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Affordable website design, business email, booking systems, direct order forms and ongoing website support for small businesses in Merthyr Tydfil, Cardiff, Swansea and across the UK.">
+  <meta name="description" content="Website design from £499, hosting from £30 per month, business apps, booking systems and ongoing website support for small businesses in Merthyr Tydfil, Cardiff, Swansea and across the UK.">
   <meta name="robots" content="index, follow">
   <meta name="author" content="TimTom Studio">
   <link rel="canonical" href="https://timtomstudio.co.uk/">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
   <link rel="shortcut icon" href="/assets/favicon.svg" type="image/svg+xml">
   <meta property="og:title" content="TimTom Studio | Website Design in South Wales">
-  <meta property="og:description" content="Affordable small business websites, custom business email, direct order forms, booking systems and ongoing support for Merthyr Tydfil, Cardiff, Swansea and UK clients.">
+  <meta property="og:description" content="Affordable small business websites from £499, hosting from £30 per month, business apps, booking systems and ongoing support for Merthyr Tydfil, Cardiff, Swansea and UK clients.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://timtomstudio.co.uk/">
   <meta property="og:image" content="https://timtomstudio.co.uk/assets/timtom-logo.svg">
@@ -25,8 +25,8 @@
       "url": "https://timtomstudio.co.uk/",
       "email": "hello@timtomstudio.co.uk",
       "telephone": "+447824684820",
-      "description": "Affordable website design, custom business email, direct order forms, booking systems and ongoing website support for small businesses in Merthyr Tydfil, Cardiff, Swansea, South Wales and across the UK.",
-      "priceRange": "Starter website builds from £499.99 and website packages from £29.99 per month",
+      "description": "Website design from £499, hosting from £30 per month, custom business email, direct order forms, booking systems, app development and ongoing website support for small businesses in Merthyr Tydfil, Cardiff, Swansea, South Wales and across the UK.",
+      "priceRange": "Website builds from £499 and hosting from £30 per month",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Cilsanws Lane",
@@ -59,12 +59,12 @@
           {
             "@type": "Offer",
             "name": "Starter website build",
-            "description": "Starter website builds from £499.99 for small businesses that need a clear, mobile-friendly web presence."
+            "description": "Website builds from £499 for small businesses that need a clear, mobile-friendly web presence."
           },
           {
             "@type": "Offer",
             "name": "Website package with business email",
-            "description": "Basic website packages from £29.99 per month with a custom business email address."
+            "description": "Hosting from £30 per month with support for a custom business email address."
           },
           {
             "@type": "Offer",
@@ -73,8 +73,8 @@
           },
           {
             "@type": "Offer",
-            "name": "Ongoing website support",
-            "description": "Website edits and support for the life of the website."
+            "name": "iOS and Android app development",
+            "description": "Customer app planning, design and development for iOS and Android, with App Store and Google Play preparation support."
           }
         ]
       }
@@ -99,7 +99,7 @@
           "name": "How much does a website cost?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Our prices are competitive and straightforward. Basic website packages start from £29.99 per month, including a custom business email address such as hello@yourbusiness.com."
+            "text": "Our prices are competitive and straightforward. Website builds start from £499, and hosting starts from £30 per month."
           }
         },
         {
@@ -408,7 +408,7 @@
 
     .area-list {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       margin-top: 28px;
     }
@@ -420,6 +420,13 @@
         linear-gradient(180deg, #ffffff, #f9fdff);
       border: 1px solid rgba(216, 222, 232, 0.88);
       border-radius: 8px;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .area-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(23, 32, 51, 0.08);
     }
 
     .area-item strong {
@@ -438,6 +445,10 @@
       grid-template-columns: 0.92fr 1.08fr;
       align-items: start;
       gap: 44px;
+    }
+
+    .split .cards {
+      grid-template-columns: 1fr;
     }
 
     .panel {
@@ -767,6 +778,7 @@
 
     }
   </style>
+  <link rel="stylesheet" href="/assets/cookie-consent.css">
 </head>
 
 <body>
@@ -778,9 +790,10 @@
 
       <div class="nav-links">
         <a href="#websites">Websites</a>
-        <a href="#counta">Apps</a>
+        <a href="#app-development">Apps</a>
         <a href="#areas">Areas</a>
         <a href="#counta">Counta</a>
+        <a href="/blog.html">Blog</a>
         <a href="#faq">FAQ</a>
         <a href="#contact">Contact</a>
       </div>
@@ -809,15 +822,15 @@
 
         <div class="trust-row" aria-label="Business summary">
           <div class="trust-item featured">
-            <strong>Starter builds from £499.99</strong>
+            <strong>Website builds from £499</strong>
             <span>A clear, mobile-friendly website to get your business online.</span>
           </div>
           <div class="trust-item featured">
-            <strong>Hosting from £29.99/month</strong>
+            <strong>Hosting from £30/month</strong>
             <span>Website hosting plus a custom business email address.</span>
           </div>
           <div class="trust-item">
-            <strong>Custom Apple and Anroid Apps</strong>
+            <strong>Custom Apple and Android Apps</strong>
             <span>Pricing is variable based on technical requirements.</span>
           </div>
         </div>
@@ -863,16 +876,45 @@
           </article>
 
           <article class="card" id="apps">
-            <h3>Small business apps</h3>
+            <h3>Customer iOS and Android apps</h3>
             <p>
-              App design and development for businesses that need a customer app, internal tool or mobile
-              version of a workflow.
+              App design and development for businesses that need a customer app, internal tool, booking
+              flow, loyalty experience or mobile version of a workflow.
             </p>
             <ul>
-              <li>Idea shaping and prototypes</li>
-              <li>iPhone app design and build</li>
-              <li>App Store preparation support</li>
+              <li>Customer-facing iOS and Android app planning</li>
+              <li>Prototypes, app screens and practical launch scope</li>
+              <li>Registered organisation support for Apple and Android app builds</li>
+              <li>App Store and Google Play preparation support</li>
             </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt" id="app-development">
+      <div class="wrap split">
+        <div class="section-heading">
+          <p class="eyebrow">Business app development</p>
+          <h2>Custom iOS and Android apps for businesses that need more than a website.</h2>
+          <p>
+            If your customers need to book, order, track, request updates or access a simple account area,
+            a mobile app can make that experience easier and more memorable.
+          </p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Customer apps</h3>
+            <p>Apps for bookings, orders, loyalty, reminders, updates, simple accounts and customer communication.</p>
+          </article>
+          <article class="card">
+            <h3>Apple and Android</h3>
+            <p>We are set up as a registered organisation for building apps for Apple platforms and Android.</p>
+          </article>
+          <article class="card">
+            <h3>Launch support</h3>
+            <p>We help shape the first useful version, prepare store information and support app launch steps.</p>
           </article>
         </div>
       </div>
@@ -922,31 +964,26 @@
       <div class="wrap">
         <div class="section-heading">
           <p class="eyebrow">Local areas</p>
-          <h2>Website design and app support in Merthyr Tydfil, Cardiff and Swansea.</h2>
+          <h2>Local website design pages for South Wales businesses.</h2>
           <p>
-            We are based in South Wales and work with local businesses who need practical digital support:
-            clear websites, booking systems, better enquiry flows and mobile app ideas that are built around
-            real day-to-day work.
+            We have separate local pages for the main areas we serve, with more focused information for
+            businesses looking for website design in Merthyr Tydfil, Cardiff and Swansea.
           </p>
         </div>
 
         <div class="area-list" aria-label="Areas served">
-          <div class="area-item">
+          <a class="area-item" href="/web-design-merthyr-tydfil.html">
             <strong>Merthyr Tydfil</strong>
-            <span>Local website design, booking forms and small business support close to home.</span>
-          </div>
-          <div class="area-item">
+            <span>Website builds for local trades, services, food businesses and independent shops.</span>
+          </a>
+          <a class="area-item" href="/web-design-cardiff.html">
             <strong>Cardiff</strong>
-            <span>Websites and app planning for growing businesses, services and start-ups.</span>
-          </div>
-          <div class="area-item">
+            <span>Websites for growing businesses, professional services, start-ups and customer-led brands.</span>
+          </a>
+          <a class="area-item" href="/web-design-swansea.html">
             <strong>Swansea</strong>
-            <span>Mobile-friendly websites, enquiry forms and practical business systems.</span>
-          </div>
-          <div class="area-item">
-            <strong>Across the UK</strong>
-            <span>Remote support for websites, domains, Cloudflare, apps and launch preparation.</span>
-          </div>
+            <span>Mobile-friendly websites for local services, tourism, trades, food and appointment-led businesses.</span>
+          </a>
         </div>
       </div>
     </section>
@@ -1030,6 +1067,29 @@
       </div>
     </section>
 
+    <section class="section" id="blog">
+      <div class="wrap split">
+        <div class="section-heading">
+          <p class="eyebrow">Blog</p>
+          <h2>Website and app advice for small businesses.</h2>
+          <p>
+            We have set up a blog area so you can add posts later about websites, apps, hosting, local SEO
+            and the practical questions customers ask before they start.
+          </p>
+          <div class="hero-actions">
+            <a class="button" href="/blog.html">View blog</a>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Ready for future posts</h3>
+          <p style="margin-top: 12px;">
+            The blog page is in place with on-brand styling and starter post ideas, ready for new articles
+            whenever you want to publish them.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="faq">
       <div class="wrap">
         <div class="section-heading">
@@ -1044,7 +1104,7 @@
           </article>
           <article class="faq-item">
             <h3>How much does a website cost?</h3>
-            <p>Our prices are competitive and straightforward. Starter website builds range from £499.00. Hosting services start from £29.99 per month, including a custom business email address such as hello@yourbusiness.com.</p>
+            <p>Our prices are competitive and straightforward. Website builds start from £499, and hosting starts from £30 per month.</p>
           </article>
           <article class="faq-item">
             <h3>How long does it take for you to build a website?</h3>
@@ -1070,6 +1130,7 @@
           <div class="contact-details">
             <span>Email: <a href="mailto:hello@timtomstudio.co.uk">hello@timtomstudio.co.uk</a></span>
             <span>Phone: <a href="tel:+447824684820">07824 684820</a></span>
+            <span>Facebook: <a href="https://www.facebook.com/profile.php?id=61590205104520" rel="noopener" target="_blank">Follow TimTom Studio on Facebook</a></span>
             <span>Location: Cilsanws Lane, Merthyr Tydfil, South Wales, United Kingdom</span>
             <span>Local area: Merthyr Tydfil, Cardiff, Swansea and wider South Wales</span>
             <span>Website: timtomstudio.co.uk</span>
@@ -1137,8 +1198,11 @@
     <div class="footer-inner">
       <span>TimTom Studio. Websites and apps for small businesses in South Wales and across the UK.</span>
       <div class="footer-links">
+        <a href="https://www.facebook.com/profile.php?id=61590205104520" rel="noopener" target="_blank">Facebook</a>
+        <a href="/blog.html">Blog</a>
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms</a>
+        <a href="#" data-cookie-settings>Cookie settings</a>
         <a href="mailto:hello@timtomstudio.co.uk">Contact</a>
       </div>
     </div>
@@ -1175,5 +1239,6 @@
       window.location.href = `mailto:hello@timtomstudio.co.uk?subject=${subject}&body=${body}`;
     });
   </script>
+  <script src="/assets/cookie-consent.js" defer></script>
 </body>
 </html>
