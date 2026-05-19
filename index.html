@@ -483,6 +483,15 @@
       border: 0;
     }
 
+    .facebook-fallback {
+      padding: 18px 20px 20px;
+      border-top: 1px solid rgba(216, 222, 232, 0.88);
+    }
+
+    .facebook-fallback p {
+      margin-bottom: 14px;
+    }
+
     .process {
       display: grid;
       gap: 14px;
@@ -1100,18 +1109,18 @@
           <p class="eyebrow">Blog</p>
           <h2>Website and app advice for small businesses.</h2>
           <p>
-            We have set up a blog area so you can add posts later about websites, apps, hosting, local SEO
-            and the practical questions customers ask before they start.
+            Our blog is coming soon, with practical articles on websites, hosting, apps, local SEO and the
+            questions small businesses ask before starting a project.
           </p>
           <div class="hero-actions">
             <a class="button" href="/blog.html">View blog</a>
           </div>
         </div>
         <div class="panel">
-          <h3>Ready for future posts</h3>
+          <h3>New articles are on the way</h3>
           <p style="margin-top: 12px;">
-            The blog page is in place with on-brand styling and starter post ideas, ready for new articles
-            whenever you want to publish them.
+            We are preparing plain-English guides to help local businesses understand their options, plan
+            better websites and make confident digital decisions.
           </p>
         </div>
       </div>
@@ -1123,8 +1132,8 @@
           <p class="eyebrow">Social</p>
           <h2>Follow TimTom Studio on Facebook.</h2>
           <p>
-            Our latest Facebook updates, offers and posts are available here. If the feed does not load,
-            you can open the page directly on Facebook.
+            Our latest Facebook updates, offers and posts are available here. Facebook controls whether
+            the live feed can be embedded, so the direct page link is always available as a backup.
           </p>
           <div class="hero-actions">
             <a class="button" href="https://www.facebook.com/profile.php?id=61590205104520" rel="noopener" target="_blank">Open Facebook page</a>
@@ -1134,15 +1143,20 @@
         <div class="facebook-embed" aria-label="TimTom Studio Facebook feed">
           <iframe
             title="TimTom Studio Facebook feed"
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61590205104520&tabs=timeline&width=500&height=520&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=false"
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fprofile.php%3Fid%3D61590205104520&amp;tabs=timeline&amp;width=500&amp;height=520&amp;small_header=false&amp;adapt_container_width=true&amp;hide_cover=false&amp;show_facepile=false"
             width="500"
             height="520"
             style="border:none;overflow:hidden"
             scrolling="no"
             frameborder="0"
             allowfullscreen="true"
+            allowtransparency="true"
             allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
             loading="lazy"></iframe>
+          <div class="facebook-fallback">
+            <p>If the feed is unavailable in your browser, you can still view the latest TimTom Studio posts directly on Facebook.</p>
+            <a class="button secondary" href="https://www.facebook.com/profile.php?id=61590205104520" rel="noopener" target="_blank">View latest posts</a>
+          </div>
         </div>
       </div>
     </section>
