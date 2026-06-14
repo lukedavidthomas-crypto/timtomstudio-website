@@ -26,6 +26,9 @@
         "inLanguage": "en-GB"
     }
     </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -104,6 +107,7 @@
         .post-date { font-size: 0.875rem; color: var(--muted); }
 
         h1 {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: clamp(1.6rem, 4vw, 2.25rem);
             font-weight: 800;
             line-height: 1.15;
@@ -121,6 +125,7 @@
         }
 
         h2 {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             font-size: 1.25rem;
             font-weight: 700;
             margin: 40px 0 12px;
@@ -206,20 +211,79 @@
         }
         .site-footer a { color: var(--text-2); text-decoration: none; margin: 0 8px; }
         .site-footer a:hover { color: var(--text); }
+
+        /* ── Site-wide header & footer (TimTom Studio) ── */
+        .tt-site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(17, 24, 39, 0.94);
+            backdrop-filter: blur(16px);
+            box-shadow: 0 12px 28px rgba(17, 24, 39, 0.12);
+        }
+        .tt-site-header::after {
+            content: "";
+            display: block;
+            height: 3px;
+            background: linear-gradient(90deg, #11857b, #20c7d9, #16b4a5);
+        }
+        .tt-nav {
+            width: min(1120px, calc(100% - 36px));
+            min-height: 82px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+        .tt-brand-logo { width: 204px; height: auto; display: block; }
+        .tt-nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            color: #d9e2ef;
+            font-size: 0.95rem;
+            font-weight: 650;
+        }
+        .tt-nav-links a { text-decoration: none; color: #d9e2ef; }
+        .tt-nav-links a:hover { color: #ffffff; }
+        .tt-site-footer {
+            padding: 34px 0;
+            background: #101827;
+            color: #cbd5e1;
+            font-size: 0.94rem;
+        }
+        .tt-footer-inner {
+            width: min(1120px, calc(100% - 36px));
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+        .tt-footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+        .tt-footer-links a { color: #cbd5e1; text-decoration: none; }
+        .tt-footer-links a:hover { color: #ffffff; }
+        @media (max-width: 880px) {
+            .tt-nav { min-height: auto; padding: 18px 0; align-items: flex-start; flex-direction: column; }
+            .tt-nav-links { width: 100%; overflow-x: auto; padding-bottom: 4px; }
+            .tt-brand-logo { width: 176px; }
+            .tt-footer-inner { flex-direction: column; }
+        }
     </style>
 </head>
 <body>
 
-<nav class="site-nav">
-    <div class="nav-inner">
-        <a href="/" class="logo"><img src="/assets/timtom-logo.svg" alt="TimTom Studio"></a>
-        <div class="nav-links">
+<header class="tt-site-header">
+    <nav class="tt-nav" aria-label="Main navigation">
+        <a href="/"><img class="tt-brand-logo" src="/assets/timtom-logo.svg?v=3" alt="TimTom Studio"></a>
+        <div class="tt-nav-links">
             <a href="/">Home</a>
-            <a href="/blog.html" class="active">Blog</a>
+            <a href="/blog.html">Blog</a>
             <a href="/#contact">Contact</a>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
 
 <article>
     <div class="post-meta">
@@ -315,14 +379,17 @@
     </div>
 </article>
 
-<footer class="site-footer">
-    <a href="/">Home</a>
-    <a href="/blog.html">Blog</a>
-    <a href="/privacy.html">Privacy</a>
-    <a href="/terms.html">Terms</a>
-    <a href="/#contact">Contact</a>
-    <br><br>
-    TimTom Studio. Merthyr Tydfil, South Wales.
+<footer class="tt-site-footer">
+    <div class="tt-footer-inner">
+        <span>TimTom Studio. Websites, apps and products — built in South Wales, used across the UK.</span>
+        <div class="tt-footer-links">
+            <a href="/">Home</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/privacy.html">Privacy Policy</a>
+            <a href="/terms.html">Terms</a>
+            <a href="/#contact">Contact</a>
+        </div>
+    </div>
 </footer>
 
 </body>
