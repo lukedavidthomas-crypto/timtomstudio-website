@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our First App Store Submission: Xcode Errors, Terminal Rabbit Holes and Getting There in the End | TimTom Studio</title>
+    <meta name="description" content="We thought submitting our first app to the App Store would take an afternoon. It did not. Here's the honest account of what the process involved — and why it was still worth every bit of it.">
+    <meta name="author" content="TimTom Studio">
+    <link rel="canonical" href="https://timtomstudio.co.uk/blog-first-app-store-submission.html">
+    <meta property="og:title" content="Our First App Store Submission: Xcode Errors, Terminal Rabbit Holes and Getting There in the End">
+    <meta property="og:description" content="We thought it would take an afternoon. Here's the honest account of what submitting our first app to the App Store actually involved.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://timtomstudio.co.uk/blog-first-app-store-submission.html">
+    <meta property="og:image" content="https://timtomstudio.co.uk/assets/timtom-logo.svg">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="/assets/timtom-logo.svg" type="image/svg+xml">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Our First App Store Submission: Xcode Errors, Terminal Rabbit Holes and Getting There in the End",
+        "description": "We thought submitting our first app to the App Store would take an afternoon. It did not. Here's the honest account of what the process involved — and why it was still worth every bit of it.",
+        "author": { "@type": "Organization", "name": "TimTom Studio" },
+        "publisher": { "@type": "Organization", "name": "TimTom Studio", "url": "https://timtomstudio.co.uk" },
+        "url": "https://timtomstudio.co.uk/blog-first-app-store-submission.html",
+        "inLanguage": "en-GB"
+    }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f7f7f7;
+            --border: #e4e4e4;
+            --text: #1a1a1a;
+            --text-2: #555;
+            --muted: #888;
+            --accent: #2563eb;
+            --accent-dim: rgba(37,99,235,0.08);
+            --green: #16a34a;
+            --green-dim: rgba(22,163,74,0.08);
+            --red: #dc2626;
+            --red-dim: rgba(220,38,38,0.07);
+            --radius: 10px;
+            --max: 700px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .site-nav {
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+        }
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .logo img { height: 28px; display: block; }
+        .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+        .nav-links a {
+            color: var(--text-2);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 6px 11px;
+            border-radius: 6px;
+            transition: background .15s, color .15s;
+        }
+        .nav-links a:hover { background: var(--surface); color: var(--text); }
+        .nav-links a.active { color: var(--accent); }
+
+        article {
+            max-width: var(--max);
+            margin: 60px auto 100px;
+            padding: 0 24px;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            display: inline-block;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            padding: 4px 11px;
+            border-radius: 100px;
+        }
+
+        .post-date { font-size: 0.875rem; color: var(--muted); }
+
+        h1 {
+            font-size: clamp(1.6rem, 4vw, 2.25rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -.02em;
+            margin-bottom: 16px;
+        }
+
+        .standfirst {
+            font-size: 1.125rem;
+            color: var(--text-2);
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 40px 0 12px;
+            letter-spacing: -.01em;
+        }
+
+        p { margin-bottom: 20px; }
+        p:last-child { margin-bottom: 0; }
+
+        .callout {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 18px 20px;
+            margin: 32px 0;
+            color: var(--text-2);
+            font-size: 0.9375rem;
+        }
+        .callout strong { color: var(--text); display: block; margin-bottom: 6px; }
+
+        .callout.warning {
+            border-left-color: var(--red);
+            background: var(--red-dim);
+        }
+
+        .callout.success {
+            border-left-color: var(--green);
+            background: var(--green-dim);
+        }
+
+        .stage-list {
+            margin: 32px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+        }
+
+        .stage {
+            display: flex;
+            gap: 18px;
+            padding: 0 0 32px 0;
+            position: relative;
+        }
+
+        .stage:not(:last-child)::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 32px;
+            bottom: 0;
+            width: 2px;
+            background: var(--border);
+        }
+
+        .stage-num {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--accent-dim);
+            border: 2px solid var(--accent);
+            color: var(--accent);
+            font-size: .8125rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .stage-body { flex: 1; padding-top: 4px; }
+        .stage-body strong { display: block; font-size: .9375rem; margin-bottom: 6px; }
+        .stage-body p { font-size: .9rem; color: var(--text-2); margin: 0; }
+
+        ul, ol { padding-left: 20px; margin-bottom: 20px; }
+        li { margin-bottom: 8px; }
+
+        .post-footer {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            margin-bottom: 32px;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .related-posts {
+            margin-bottom: 32px;
+        }
+        .related-posts h3 {
+            font-size: .9375rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-2);
+        }
+        .related-links { display: flex; flex-direction: column; gap: 8px; }
+        .related-links a {
+            color: var(--accent);
+            text-decoration: none;
+            font-size: .9rem;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .related-links a:hover { text-decoration: underline; }
+
+        .author-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .author-block strong { font-size: .9375rem; }
+        .author-block p { font-size: .875rem; color: var(--text-2); margin: 0; }
+        .author-block a { color: var(--accent); }
+
+        .site-footer {
+            border-top: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            font-size: .875rem;
+            color: var(--muted);
+        }
+        .site-footer a { color: var(--text-2); text-decoration: none; margin: 0 8px; }
+        .site-footer a:hover { color: var(--text); }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="/" class="logo"><img src="/assets/timtom-logo.svg" alt="TimTom Studio"></a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/blog.html" class="active">Blog</a>
+            <a href="/#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<article>
+    <div class="post-meta">
+        <span class="category">App Development</span>
+        <span class="post-date">TimTom Studio</span>
+    </div>
+
+    <h1>Our First App Store Submission: Xcode Errors, Terminal Rabbit Holes and Getting There in the End</h1>
+
+    <p class="standfirst">We thought submitting our first app to the App Store would take an afternoon. It did not. Here's the honest account of what the process involved, what kept going wrong, and why — despite everything — getting that first approval was one of the best feelings we've had building this studio.</p>
+
+    <h2>The confidence before the fall</h2>
+
+    <p>By the time we were ready to submit our first app, we felt fairly good about where we'd got to. The app was working. We'd been through the pain of setting up our Apple Developer account, we'd dealt with the keychain issues, we'd done our testing. Submission, we told ourselves, would be the easy part.</p>
+
+    <p>We were wrong about this in a way that, looking back, feels almost comic. The submission process has its own set of things that can go wrong — completely separately from anything that happens inside your code — and most of them are not particularly well-explained anywhere.</p>
+
+    <h2>The process, as it actually unfolds</h2>
+
+    <p>Before you can submit anything, you need to get through a sequence of steps in Xcode that go under the label of "archiving" and "distributing" your app. Archive creates a packaged version of your app. Distribute sends it to App Store Connect, which is Apple's portal for managing everything on the App Store side. Only once it's in App Store Connect can you actually submit it for review.</p>
+
+    <p>Each of those steps — archive, distribute, App Store Connect setup, submission — has its own things that can fail. Here's roughly how our first attempt went:</p>
+
+    <div class="stage-list">
+        <div class="stage">
+            <div class="stage-num">1</div>
+            <div class="stage-body">
+                <strong>Archive fails with a signing error</strong>
+                <p>Even with the signing setup looking correct, archiving threw an error about certificates. This was related to our provisioning profile not matching the bundle identifier we were using. We fixed it, tried again.</p>
+            </div>
+        </div>
+        <div class="stage">
+            <div class="stage-num">2</div>
+            <div class="stage-body">
+                <strong>Archive succeeds but distribution fails</strong>
+                <p>We got an archive but the upload to App Store Connect errored out. The error message was one of those that tells you what went wrong but not how to fix it. We spent a while trying different export options before finding the right configuration.</p>
+            </div>
+        </div>
+        <div class="stage">
+            <div class="stage-num">3</div>
+            <div class="stage-body">
+                <strong>Terminal enters the picture</strong>
+                <p>At some point the Xcode GUI wasn't giving us enough information to understand what was failing. We ended up using the Terminal to run parts of the process manually, which gave more detailed output but also introduced new opportunities to do the wrong thing. Several were taken.</p>
+            </div>
+        </div>
+        <div class="stage">
+            <div class="stage-num">4</div>
+            <div class="stage-body">
+                <strong>The build appears in App Store Connect</strong>
+                <p>Eventually a build made it through. At this point we felt genuinely relieved — for about ten minutes, until we realised how much needed filling in before we could submit.</p>
+            </div>
+        </div>
+        <div class="stage">
+            <div class="stage-num">5</div>
+            <div class="stage-body">
+                <strong>App Store Connect: the forms</strong>
+                <p>App name, subtitle, description, keywords, screenshots for multiple device sizes, privacy policy URL, contact details, content rating questionnaire, age rating, pricing, availability. All of this needed to be in before we could hit Submit for Review.</p>
+            </div>
+        </div>
+        <div class="stage">
+            <div class="stage-num">6</div>
+            <div class="stage-body">
+                <strong>Submitted. Waiting.</strong>
+                <p>The first review took longer than expected. We checked the status approximately every twenty minutes.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="callout warning">
+        <strong>The screenshots requirement is more work than it sounds</strong>
+        Apple requires screenshots at specific pixel dimensions for different device sizes. You need them for at least the largest iPhone screen size, and if you plan to support iPad, those are separate. Getting screenshots at the right dimensions, with the right content shown, takes a surprising amount of time if you haven't prepared for it. Do this well before submission day.
+    </div>
+
+    <h2>The rejection</h2>
+
+    <p>Our first submission was rejected. This is apparently very common for first-time submitters — Apple's reviewers are thorough, and they catch things that you either missed or didn't know were required.</p>
+
+    <p>The rejection came with notes explaining what the issue was. We read those notes carefully, fixed the specific problems raised, and resubmitted. The second submission went through.</p>
+
+    <p>It's worth saying clearly: a rejection is not a disaster. It feels like one in the moment. But the App Store review process exists to protect users, and the feedback is usually specific and actionable. The worst thing you can do is resubmit without properly reading and addressing what they've raised.</p>
+
+    <h2>When it went live</h2>
+
+    <p>The moment the app status changed to "Ready for Sale" was genuinely one of the best moments we've had building anything. After all of the setup, the certificate issues, the keychain problems, the failed builds, the forms, the waiting, and the rejection — there it was. On the App Store. Something real that anyone could download.</p>
+
+    <p>It sounds simple when you write it like that. It hadn't felt simple getting there. But the combination of knowing that we'd built it ourselves, dealt with everything that went wrong, and come out the other side with a live product — that felt like something.</p>
+
+    <div class="callout success">
+        <strong>What changed after the first submission</strong>
+        The second app was significantly easier. Not because the process is different, but because we understood it. We knew what to prepare in advance, we weren't surprised by any of the steps, and we didn't spend time troubleshooting things we'd already troubleshooted. The first one is the hardest one by a long way.
+    </div>
+
+    <h2>What we'd tell ourselves going in</h2>
+
+    <ul>
+        <li><strong>Treat submission as a full day's work, not an afternoon task.</strong> Budget the time accordingly and don't plan anything else for that day.</li>
+        <li><strong>Prepare your App Store assets well in advance.</strong> Screenshots, description, keywords, privacy policy — have all of this ready before you start the submission process, not during it.</li>
+        <li><strong>Read the App Store Review Guidelines before you submit.</strong> Apple publishes the list of reasons apps get rejected. Going through it once before submission lets you catch obvious issues yourself rather than hearing about them from a reviewer.</li>
+        <li><strong>A rejection is feedback, not a verdict.</strong> Read it properly, fix the specific issues raised, and resubmit. It's part of the process.</li>
+        <li><strong>When Xcode error messages stop making sense, use the Terminal for more detail.</strong> The output is verbose but it usually tells you exactly what the problem is if you read it carefully enough.</li>
+        <li><strong>The second time is dramatically easier.</strong> Everything you learn the hard way the first time becomes second nature. It's worth pushing through.</li>
+    </ul>
+
+    <h2>Why it's still worth doing</h2>
+
+    <p>We've now been through the full process more than once and it has become, if not exactly simple, at least predictable. We know what each step involves, we know what can go wrong and roughly why, and we can move through it with a lot more confidence than we had first time around.</p>
+
+    <p>That experience — having actually shipped something to the App Store ourselves — changes what we can offer to clients who come to us wanting an app. We're not describing a process we've read about. We've been through it, including the parts that go wrong, and we're set up to support clients through the same journey.</p>
+
+    <p>If you're planning your first submission and want someone to walk through it with you or sense-check what you've prepared, get in touch. We're happy to help you avoid the specific potholes we hit.</p>
+
+    <div class="post-footer">
+        <div class="related-posts">
+            <h3>More from this series</h3>
+            <div class="related-links">
+                <a href="/blog-xcode-keychain.html">→ Locked Out of Xcode: Our Keychain Password Nightmare</a>
+                <a href="/blog-apple-developer-google-play.html">→ Setting Up Apple Developer and Google Play: What Nobody Warns You About</a>
+            </div>
+        </div>
+
+        <a class="back-link" href="/blog.html">← Back to blog</a>
+
+        <div class="author-block">
+            <strong>TimTom Studio</strong>
+            <p>A web and app studio based in Merthyr Tydfil, South Wales. We've built and submitted our own apps to the App Store and Google Play — and we build custom apps for businesses across the UK. <a href="/#contact">Get in touch</a> if you're thinking about building something.</p>
+        </div>
+    </div>
+</article>
+
+<footer class="site-footer">
+    <a href="/">Home</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/#contact">Contact</a>
+    <br><br>
+    TimTom Studio. Merthyr Tydfil, South Wales.
+</footer>
+
+</body>
+</html>

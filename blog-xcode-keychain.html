@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locked Out of Xcode: Our Keychain Password Nightmare | TimTom Studio</title>
+    <meta name="description" content="We lost access to our Xcode signing certificates after a keychain password issue. Here's what happened, how long it took to sort, and what we'd do differently.">
+    <meta name="author" content="TimTom Studio">
+    <link rel="canonical" href="https://timtomstudio.co.uk/blog-xcode-keychain.html">
+    <meta property="og:title" content="Locked Out of Xcode: Our Keychain Password Nightmare">
+    <meta property="og:description" content="We lost access to our Xcode signing certificates after a keychain password issue. Here's what happened and how we got back in.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://timtomstudio.co.uk/blog-xcode-keychain.html">
+    <meta property="og:image" content="https://timtomstudio.co.uk/assets/timtom-logo.svg">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="/assets/timtom-logo.svg" type="image/svg+xml">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Locked Out of Xcode: Our Keychain Password Nightmare",
+        "description": "We lost access to our Xcode signing certificates after a keychain password issue. Here's what happened, how long it took to sort, and what we'd do differently.",
+        "author": { "@type": "Organization", "name": "TimTom Studio" },
+        "publisher": { "@type": "Organization", "name": "TimTom Studio", "url": "https://timtomstudio.co.uk" },
+        "url": "https://timtomstudio.co.uk/blog-xcode-keychain.html",
+        "inLanguage": "en-GB"
+    }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f7f7f7;
+            --border: #e4e4e4;
+            --text: #1a1a1a;
+            --text-2: #555;
+            --muted: #888;
+            --accent: #2563eb;
+            --accent-dim: rgba(37,99,235,0.08);
+            --radius: 10px;
+            --max: 700px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Nav */
+        .site-nav {
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+        }
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .logo img { height: 28px; display: block; }
+        .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+        .nav-links a {
+            color: var(--text-2);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 6px 11px;
+            border-radius: 6px;
+            transition: background .15s, color .15s;
+        }
+        .nav-links a:hover { background: var(--surface); color: var(--text); }
+        .nav-links a.active { color: var(--accent); }
+
+        /* Article */
+        article {
+            max-width: var(--max);
+            margin: 60px auto 100px;
+            padding: 0 24px;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            display: inline-block;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            padding: 4px 11px;
+            border-radius: 100px;
+        }
+
+        .post-date {
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        h1 {
+            font-size: clamp(1.6rem, 4vw, 2.25rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -.02em;
+            margin-bottom: 16px;
+        }
+
+        .standfirst {
+            font-size: 1.125rem;
+            color: var(--text-2);
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 40px 0 12px;
+            letter-spacing: -.01em;
+        }
+
+        p { margin-bottom: 20px; }
+        p:last-child { margin-bottom: 0; }
+
+        .callout {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 18px 20px;
+            margin: 32px 0;
+            color: var(--text-2);
+            font-size: 0.9375rem;
+        }
+        .callout strong { color: var(--text); display: block; margin-bottom: 6px; }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+        li { margin-bottom: 8px; }
+
+        .post-footer {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            margin-bottom: 32px;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .author-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .author-block strong { font-size: .9375rem; }
+        .author-block p { font-size: .875rem; color: var(--text-2); margin: 0; }
+        .author-block a { color: var(--accent); }
+
+        /* Footer */
+        .site-footer {
+            border-top: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            font-size: .875rem;
+            color: var(--muted);
+        }
+        .site-footer a { color: var(--text-2); text-decoration: none; margin: 0 8px; }
+        .site-footer a:hover { color: var(--text); }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="/" class="logo"><img src="/assets/timtom-logo.svg" alt="TimTom Studio"></a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/blog.html" class="active">Blog</a>
+            <a href="/#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<article>
+    <div class="post-meta">
+        <span class="category">App Development</span>
+        <span class="post-date">TimTom Studio</span>
+    </div>
+
+    <h1>Locked Out of Xcode: Our Keychain Password Nightmare</h1>
+
+    <p class="standfirst">At some point during building our first app, we lost access to our own signing certificates. Not because we'd done anything obviously wrong — just because of a keychain password we couldn't remember setting. Here's what that experience was actually like, and what we'd do differently.</p>
+
+    <h2>It started with a box we didn't understand</h2>
+
+    <p>If you've used Xcode for any length of time, you'll know the feeling: a dialogue box appears, asking for a password, and you have absolutely no idea what it wants or why. You try the obvious ones. You try your Mac login. You try the password you use for everything. Nothing works. You click Cancel and hope the problem goes away.</p>
+
+    <p>It doesn't go away.</p>
+
+    <p>The issue — which we only fully understood much later — is that Xcode relies on macOS Keychain to store your code signing certificates and private keys. These are the credentials that prove your app genuinely came from you before Apple will accept it. When something goes wrong with the keychain — whether that's a forgotten password, a corrupted entry, or certificates that have been moved or recreated on a different machine — Xcode stops being able to sign anything. And when Xcode can't sign, you can't build, you can't archive, and you certainly can't submit.</p>
+
+    <p>We spent a long time staring at error messages that were technically accurate but practically useless. Things like "no signing certificate found" or "private key is missing" — correct, but not helpful when you don't know what created the problem in the first place.</p>
+
+    <h2>The spiral of unhelpful fixes</h2>
+
+    <p>We did what most people do: we searched. We found forum threads going back years, Stack Overflow answers that contradicted each other, and Apple documentation that assumed a level of existing knowledge we didn't yet have. We tried deleting and regenerating certificates. We tried revoking them in the Apple Developer portal. We tried creating a new provisioning profile. Each attempt seemed to partially work until it didn't, and we'd find ourselves back at square one with a new variation of the same error.</p>
+
+    <p>The honest answer is that we didn't fully understand the relationship between certificates, private keys, and provisioning profiles at this point. We were treating the symptoms rather than the cause. The real problem — the keychain — was sitting there quietly causing chaos while we looked everywhere else.</p>
+
+    <div class="callout">
+        <strong>What was actually happening</strong>
+        When you create a signing certificate, Xcode stores the private key in your Mac's keychain. If you later change your keychain password, reset it, or the keychain becomes locked in a way that Xcode can't access, the private key is effectively gone even though the certificate still shows up in the Developer portal. The certificate alone is useless without the key. This is what was happening to us.
+    </div>
+
+    <h2>Getting back in</h2>
+
+    <p>Eventually — after a lot of frustration, a fair few restarts, and more than one moment of wondering whether we'd just have to start everything from scratch — we got to the bottom of it. The fix, once we understood the actual problem, was straightforward enough. But the time it took to get there, mostly because we were working around the wrong diagnosis, was significant.</p>
+
+    <p>The resolution involved going into Keychain Access directly, understanding what was locked or missing, and working through the certificate and provisioning profile setup cleanly from scratch on the right machine. Once we did that properly — rather than poking at individual error messages — everything fell into place.</p>
+
+    <p>What we should have done from the start was treat the signing setup as a deliberate process rather than something to get through as quickly as possible. Xcode's code signing can feel like an obstacle, but it's actually a fairly logical system once you understand what each piece does and where it lives.</p>
+
+    <h2>What we'd do differently</h2>
+
+    <ul>
+        <li><strong>Understand the signing chain before you need it.</strong> Certificates, private keys, provisioning profiles — they each do a specific job. Ten minutes learning that relationship upfront saves hours of confused troubleshooting later.</li>
+        <li><strong>Export and back up your private keys.</strong> When you create a signing certificate, immediately export the private key as a .p12 file and store it somewhere safe. This means if you ever lose keychain access, you can import it back rather than starting over.</li>
+        <li><strong>Work on one machine where possible.</strong> Splitting development across multiple Macs adds complexity because the keys live in the keychain of whichever machine created them. If you do need multiple machines, use Xcode's Automatic Signing and sync certificates deliberately.</li>
+        <li><strong>When Xcode shows a signing error, go to Keychain Access first.</strong> Not Apple Developer portal, not a forum. Start with the keychain and confirm the private key is actually there and accessible.</li>
+    </ul>
+
+    <h2>Worth knowing going in</h2>
+
+    <p>This kind of problem feels unique when you're in it. It's not. Nearly every developer we've spoken to has a version of this story — the afternoon lost to a certificate issue, the day spent on something that turned out to have a fifteen-minute fix once you knew what you were looking at.</p>
+
+    <p>We're not writing this to put anyone off building an app. We're writing it because knowing that this happens — and roughly why — would have saved us a lot of stress. The technical side of getting an app built and submitted is learnable. It just requires working through the confusion once, properly, so you don't have to do it again.</p>
+
+    <p>If you're working through something similar and want a second pair of eyes on it, feel free to get in touch. We've been in the weeds on most of this stuff now and we're happy to talk through it.</p>
+
+    <div class="post-footer">
+        <a class="back-link" href="/blog.html">← Back to blog</a>
+        <div class="author-block">
+            <strong>TimTom Studio</strong>
+            <p>A web and app studio based in Merthyr Tydfil, South Wales. We build websites and custom iOS and Android apps for businesses across the UK — and occasionally write about what the process actually looks like. <a href="/#contact">Get in touch</a> if you're working on something.</p>
+        </div>
+    </div>
+</article>
+
+<footer class="site-footer">
+    <a href="/">Home</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/#contact">Contact</a>
+    <br><br>
+    TimTom Studio. Merthyr Tydfil, South Wales.
+</footer>
+
+</body>
+</html>

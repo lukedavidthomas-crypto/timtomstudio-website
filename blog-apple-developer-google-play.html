@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setting Up Apple Developer and Google Play: What Nobody Warns You About | TimTom Studio</title>
+    <meta name="description" content="We registered as an organisation on both the Apple Developer Program and Google Play Console. Here's what the process actually involved, how long it took, and what caught us out.">
+    <meta name="author" content="TimTom Studio">
+    <link rel="canonical" href="https://timtomstudio.co.uk/blog-apple-developer-google-play.html">
+    <meta property="og:title" content="Setting Up Apple Developer and Google Play: What Nobody Warns You About">
+    <meta property="og:description" content="We registered as an organisation on both platforms. Here's what the process actually involved, how long it took, and what caught us out.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://timtomstudio.co.uk/blog-apple-developer-google-play.html">
+    <meta property="og:image" content="https://timtomstudio.co.uk/assets/timtom-logo.svg">
+    <meta name="twitter:card" content="summary">
+    <link rel="icon" href="/assets/timtom-logo.svg" type="image/svg+xml">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Setting Up Apple Developer and Google Play: What Nobody Warns You About",
+        "description": "We registered as an organisation on both the Apple Developer Program and Google Play Console. Here's what the process actually involved, how long it took, and what caught us out.",
+        "author": { "@type": "Organization", "name": "TimTom Studio" },
+        "publisher": { "@type": "Organization", "name": "TimTom Studio", "url": "https://timtomstudio.co.uk" },
+        "url": "https://timtomstudio.co.uk/blog-apple-developer-google-play.html",
+        "inLanguage": "en-GB"
+    }
+    </script>
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #ffffff;
+            --surface: #f7f7f7;
+            --border: #e4e4e4;
+            --text: #1a1a1a;
+            --text-2: #555;
+            --muted: #888;
+            --accent: #2563eb;
+            --accent-dim: rgba(37,99,235,0.08);
+            --radius: 10px;
+            --max: 700px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .site-nav {
+            border-bottom: 1px solid var(--border);
+            padding: 16px 24px;
+        }
+        .nav-inner {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+        .logo img { height: 28px; display: block; }
+        .nav-links { display: flex; gap: 4px; flex-wrap: wrap; }
+        .nav-links a {
+            color: var(--text-2);
+            text-decoration: none;
+            font-size: 0.875rem;
+            padding: 6px 11px;
+            border-radius: 6px;
+            transition: background .15s, color .15s;
+        }
+        .nav-links a:hover { background: var(--surface); color: var(--text); }
+        .nav-links a.active { color: var(--accent); }
+
+        article {
+            max-width: var(--max);
+            margin: 60px auto 100px;
+            padding: 0 24px;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+
+        .category {
+            display: inline-block;
+            background: var(--accent-dim);
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: .04em;
+            text-transform: uppercase;
+            padding: 4px 11px;
+            border-radius: 100px;
+        }
+
+        .post-date { font-size: 0.875rem; color: var(--muted); }
+
+        h1 {
+            font-size: clamp(1.6rem, 4vw, 2.25rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -.02em;
+            margin-bottom: 16px;
+        }
+
+        .standfirst {
+            font-size: 1.125rem;
+            color: var(--text-2);
+            margin-bottom: 40px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border);
+            line-height: 1.6;
+        }
+
+        h2 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 40px 0 12px;
+            letter-spacing: -.01em;
+        }
+
+        p { margin-bottom: 20px; }
+        p:last-child { margin-bottom: 0; }
+
+        .callout {
+            background: var(--surface);
+            border-left: 3px solid var(--accent);
+            border-radius: 0 var(--radius) var(--radius) 0;
+            padding: 18px 20px;
+            margin: 32px 0;
+            color: var(--text-2);
+            font-size: 0.9375rem;
+        }
+        .callout strong { color: var(--text); display: block; margin-bottom: 6px; }
+
+        .comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin: 32px 0;
+        }
+        @media (max-width: 540px) { .comparison { grid-template-columns: 1fr; } }
+
+        .compare-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 18px 20px;
+        }
+        .compare-card h3 {
+            font-size: .9375rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .compare-card ul { padding-left: 18px; margin: 0; }
+        .compare-card li { font-size: .875rem; color: var(--text-2); margin-bottom: 6px; }
+
+        ul, ol { padding-left: 20px; margin-bottom: 20px; }
+        li { margin-bottom: 8px; }
+
+        .post-footer {
+            margin-top: 60px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9375rem;
+            margin-bottom: 32px;
+        }
+        .back-link:hover { text-decoration: underline; }
+
+        .author-block {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 20px 22px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .author-block strong { font-size: .9375rem; }
+        .author-block p { font-size: .875rem; color: var(--text-2); margin: 0; }
+        .author-block a { color: var(--accent); }
+
+        .site-footer {
+            border-top: 1px solid var(--border);
+            padding: 24px;
+            text-align: center;
+            font-size: .875rem;
+            color: var(--muted);
+        }
+        .site-footer a { color: var(--text-2); text-decoration: none; margin: 0 8px; }
+        .site-footer a:hover { color: var(--text); }
+    </style>
+</head>
+<body>
+
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="/" class="logo"><img src="/assets/timtom-logo.svg" alt="TimTom Studio"></a>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/blog.html" class="active">Blog</a>
+            <a href="/#contact">Contact</a>
+        </div>
+    </div>
+</nav>
+
+<article>
+    <div class="post-meta">
+        <span class="category">App Development</span>
+        <span class="post-date">TimTom Studio</span>
+    </div>
+
+    <h1>Setting Up Apple Developer and Google Play: What Nobody Warns You About</h1>
+
+    <p class="standfirst">Before you can put an app in front of a single real user, you have to get through a registration process that feels specifically designed to test your patience. Here's what setting up as an organisation on both the Apple Developer Program and Google Play Console actually involved for us — and what we wish we'd known going in.</p>
+
+    <h2>The moment you realise it's not just downloading Xcode</h2>
+
+    <p>When we decided to build our first app, we had a vague sense that there would be some kind of setup involved. What we didn't fully appreciate was that before we could publish anything — before anyone could download anything — we'd need to be formally registered as a developer organisation with both Apple and Google, and that the two processes would be completely different from each other.</p>
+
+    <p>Neither of these registrations is particularly difficult once you know what you're doing. But going in blind, they both had the ability to bring everything to a complete standstill at exactly the wrong moment.</p>
+
+    <h2>Apple Developer Program: more involved than you expect</h2>
+
+    <p>The Apple Developer Program costs $99 per year. That's the part most people know. What's less commonly discussed is what the registration process actually involves if you're signing up as an organisation rather than an individual.</p>
+
+    <p>Apple requires you to verify that your organisation is a real, legally registered entity. That means having a registered company number, a DUNS number (a unique business identifier from Dun &amp; Bradstreet, which is a separate registration if you don't already have one), and going through Apple's own verification process, which involves them checking those details independently.</p>
+
+    <p>The DUNS number process was the part that caught us most off guard. If your business doesn't already have one, you need to request it, wait for it to be created, wait for Apple's systems to recognise it, and only then continue with the developer registration. This is not a same-day process. Depending on your business details, it can take days or longer — and there's not much you can do to speed it up.</p>
+
+    <div class="callout">
+        <strong>Why sign up as an organisation rather than an individual?</strong>
+        An individual developer account means the app is associated with your personal Apple ID and published under your name. An organisation account lets you publish under a business name, add other team members with different roles, and generally presents a more professional front on the App Store. If you're building anything for a client or a business, the organisation route is the right one — but it is more work to set up.
+    </div>
+
+    <p>Once the verification was done and the account was active, we then had to understand how Apple's team and permissions system worked — who could sign code, who could manage certificates, who could submit builds. This is sensibly set up but adds another layer to learn on top of everything else.</p>
+
+    <h2>Google Play Console: faster, but still a process</h2>
+
+    <p>Google's side was easier, which we were grateful for. The Google Play Console registration is a one-time $25 fee rather than an annual subscription, and the account verification process — while still requiring identity checks and business details — moved more quickly.</p>
+
+    <p>Where Google caught us out was in how the Play Console itself is structured. The dashboard is dense and the number of things you need to fill in before a new app can be reviewed is substantial. Content ratings, privacy policies, data safety forms, target audience declarations — none of these are unreasonable requirements, but collectively they represent a significant amount of work before you've even uploaded an APK.</p>
+
+    <div class="comparison">
+        <div class="compare-card">
+            <h3>Apple Developer Program</h3>
+            <ul>
+                <li>$99 per year (organisation)</li>
+                <li>Requires DUNS number</li>
+                <li>Business verification by Apple</li>
+                <li>Can take several days to activate</li>
+                <li>Team roles and permissions system</li>
+                <li>Required to test on real devices via TestFlight</li>
+            </ul>
+        </div>
+        <div class="compare-card">
+            <h3>Google Play Console</h3>
+            <ul>
+                <li>$25 one-time fee</li>
+                <li>Identity verification required</li>
+                <li>Generally faster to activate</li>
+                <li>Dense dashboard — many pre-launch forms</li>
+                <li>Data safety form is detailed</li>
+                <li>Internal testing available quickly</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2>The bit that felt never-ending</h2>
+
+    <p>The honest answer is that neither registration is technically hard. What makes it feel never-ending is the combination of waiting periods you can't control and requirements that only reveal themselves one at a time. You complete one step and discover there's another step waiting behind it that you didn't know about.</p>
+
+    <p>We'd go away and work on the app itself, come back to check on the registration, find it was still pending, then find something new needed filling in once it progressed. Over a few weeks, this drip of small blockers added up to a surprisingly large amount of time and mental overhead.</p>
+
+    <p>The other thing nobody quite tells you is that you can't fully test certain things without an active developer account. You need the Apple account to test on real devices via TestFlight. Knowing this earlier would have changed when we started the registration process — it should have been one of the very first things we did, not something we started when we thought we were close to launching.</p>
+
+    <h2>What we'd start earlier next time</h2>
+
+    <ul>
+        <li><strong>Register your DUNS number the day you decide to build an app.</strong> Not when you're nearly ready to submit. The wait is outside your control and it blocks Apple registration entirely.</li>
+        <li><strong>Start both registrations in parallel.</strong> There's no reason to wait for one to complete before starting the other. Get both moving at the same time.</li>
+        <li><strong>Read the Play Console checklist early.</strong> Google lists everything an app needs before it can be reviewed. Going through that list at the start tells you what content, policies and forms you need to prepare — rather than discovering them one by one at submission time.</li>
+        <li><strong>Get your business registered properly first.</strong> Both platforms verify that your organisation is real. If your company registration is in order, this goes more smoothly. If there are any discrepancies in your business name or address, that's when things get delayed.</li>
+    </ul>
+
+    <h2>It's worth it</h2>
+
+    <p>None of this is insurmountable. Looking back, it was one of those processes that felt enormous while we were in it and fairly manageable in hindsight. Being a registered organisation on both platforms means we can build and publish apps properly — under a business name, with a team, with the ability to support clients who want their own apps.</p>
+
+    <p>If you're planning to build an app and want to understand what the setup actually involves before you start, feel free to get in touch. We've been through it now and we're happy to walk through the process with you so you don't hit the same delays we did.</p>
+
+    <div class="post-footer">
+        <a class="back-link" href="/blog.html">← Back to blog</a>
+        <div class="author-block">
+            <strong>TimTom Studio</strong>
+            <p>A web and app studio based in Merthyr Tydfil, South Wales. We build websites and custom iOS and Android apps — and we've been through the full App Store and Google Play setup process ourselves. <a href="/#contact">Get in touch</a> if you're thinking about building an app.</p>
+        </div>
+    </div>
+</article>
+
+<footer class="site-footer">
+    <a href="/">Home</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/privacy.html">Privacy</a>
+    <a href="/terms.html">Terms</a>
+    <a href="/#contact">Contact</a>
+    <br><br>
+    TimTom Studio. Merthyr Tydfil, South Wales.
+</footer>
+
+</body>
+</html>
