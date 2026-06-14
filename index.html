@@ -249,18 +249,71 @@
     .nav-links {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 18px;
+      flex-wrap: wrap;
       color: #d9e2ef;
       font-size: 0.95rem;
       font-weight: 650;
     }
 
-    .nav-links a {
+    .nav-links a,
+    .nav-group summary {
       text-decoration: none;
     }
 
-    .nav-links a:hover {
+    .nav-links a:hover,
+    .nav-group summary:hover {
       color: #ffffff;
+    }
+
+    .nav-group {
+      position: relative;
+    }
+
+    .nav-group summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .nav-group summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .nav-group summary::after {
+      content: "⌄";
+      margin-left: 5px;
+      font-size: 0.85em;
+    }
+
+    .nav-dropdown {
+      position: absolute;
+      top: calc(100% + 14px);
+      left: 50%;
+      z-index: 30;
+      min-width: 190px;
+      display: none;
+      transform: translateX(-50%);
+      padding: 8px;
+      background: #101827;
+      border: 1px solid rgba(216, 222, 232, 0.2);
+      border-radius: 8px;
+      box-shadow: 0 18px 34px rgba(16, 24, 39, 0.2);
+    }
+
+    .nav-group[open] .nav-dropdown,
+    .nav-group:hover .nav-dropdown,
+    .nav-group:focus-within .nav-dropdown {
+      display: grid;
+    }
+
+    .nav-dropdown a {
+      padding: 10px 11px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+
+    .nav-dropdown a:hover {
+      background: rgba(255, 255, 255, 0.08);
     }
 
     .button {
@@ -784,8 +837,12 @@
 
       .nav-links {
         width: 100%;
-        overflow-x: auto;
-        padding-bottom: 4px;
+        align-items: flex-start;
+      }
+
+      .nav-dropdown {
+        left: 0;
+        transform: none;
       }
 
       .split,
@@ -868,12 +925,22 @@
       <div class="nav-links">
         <a href="#websites">Websites</a>
         <a href="#app-development">Apps</a>
-        <a href="https://theadhdstudio.co.uk" target="_blank" rel="noopener">ADHD Studio ↗</a>
-        <a href="/web-design-merthyr-tydfil.html">Merthyr</a>
-        <a href="/web-design-cardiff.html">Cardiff</a>
-        <a href="/web-design-swansea.html">Swansea</a>
-        <a href="#counta">Counta</a>
-        <a href="#adh-do-it">ADH Do It</a>
+        <details class="nav-group">
+          <summary>Areas served</summary>
+          <div class="nav-dropdown">
+            <a href="/web-design-merthyr-tydfil.html">Merthyr Tydfil</a>
+            <a href="/web-design-cardiff.html">Cardiff</a>
+            <a href="/web-design-swansea.html">Swansea</a>
+          </div>
+        </details>
+        <details class="nav-group">
+          <summary>Our apps</summary>
+          <div class="nav-dropdown">
+            <a href="#counta">Counta</a>
+            <a href="#adh-do-it">ADH Do It</a>
+            <a href="https://theadhdstudio.co.uk" target="_blank" rel="noopener">ADHD Studio ↗</a>
+          </div>
+        </details>
         <a href="/blog.html">Blog</a>
         <a href="#social">Social</a>
         <a href="#faq">FAQ</a>
